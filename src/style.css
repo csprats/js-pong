@@ -8,9 +8,15 @@ canvas {
 
 html {
   background-color: #eee;
+  font-family: sans-serif;
+  overflow: hidden;
 }
 
 body {
   margin: 0;
   padding: 0;
+}
+.texts {
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,12 +1,11 @@
 export class Paddle {
-    constructor(x, y, n, canvas) {
+    constructor(x, y, canvas) {
         this.x = x,
         this.y = y,
         this.speedX = 1,
         this.speedY = 1,
         this.width = 50,
         this.height = 150,
-        this.n = n,
         this.canvas = canvas
     }
 
@@ -22,7 +21,7 @@ export class Paddle {
 
     move(direction) {
         this.y += 7 * direction
-        
+
         if (this.y < 0) {
             this.y = 0
         }

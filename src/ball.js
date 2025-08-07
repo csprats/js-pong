@@ -1,9 +1,13 @@
+import { Game } from "../game";
+
+const game = new Game()
+
 export class Ball {
     constructor(x, y) {
         this.x = x,
         this.y = y,
-        this.speedX = 6,
-        this.speedY = 6,
+        this.speedX = 8,
+        this.speedY = 8,
         this.radius = 
             Math.PI * 2
     }
@@ -32,10 +36,12 @@ export class Ball {
 
         if (this.x + this.speedX < 0) {
             this.speedX = -this.speedX
+            game.points2++
         }
-        
+
         if (this.x + this.speedX > canvas.width) {
             this.speedX = -this.speedX
+            game.points1++
         }
     }
 }

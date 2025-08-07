@@ -1,16 +1,15 @@
 import { Ball } from "./ball"
 import { Paddle } from "./paddles"
+import { Game } from "../game"
 
 const canvas = document.getElementById('canvas')
 const ctx = canvas.getContext('2d')
 const ball = new Ball(50, 50)
-const paddle1 = new Paddle(50, canvas.height / 2 - 150, 1, canvas)
-const paddle2 = new Paddle(canvas.width - 100, canvas.height / 2 - 150, 2, canvas)
+const paddle1 = new Paddle(50, canvas.height / 2 - 150, canvas)
+const paddle2 = new Paddle(canvas.width - 100, canvas.height / 2 - 150, canvas)
 let p1m = 0
 let p2m = 0
-let now = 0
-let dt = 0
-let last = 0
+const game = new Game()
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -23,6 +22,21 @@ function draw() {
 
   paddle2.draw(ctx)
   paddle2.move(p2m)
+
+
+  if (ball.x + ball.speedX < paddle1.x + paddle1.width) {
+    if (ball.y > paddle1.y && ball.y < paddle1.y + paddle1.height) {
+        ball.speedX = -ball.speedX
+    }
+  }
+
+  if (ball.x + ball.speedX > paddle2.x) {
+    if (ball.y > paddle2.y && ball.y < paddle2.y + paddle2.height) {
+        ball.speedX = -ball.speedX
+    }
+  }
+
+  console.log(game.points1, game.points2)
 
   requestAnimationFrame(draw)
 }

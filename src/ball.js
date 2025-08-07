@@ -1,7 +1,3 @@
-import { Game } from "../game";
-
-const game = new Game()
-
 export class Ball {
     constructor(x, y) {
         this.x = x,
@@ -36,12 +32,12 @@ export class Ball {
 
         if (this.x + this.speedX < 0) {
             this.speedX = -this.speedX
-            game.points2++
+            return 2
         }
 
         if (this.x + this.speedX > canvas.width) {
             this.speedX = -this.speedX
-            game.points1++
+            return 1
         }
     }
 }

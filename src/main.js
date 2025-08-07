@@ -1,6 +1,5 @@
 import { Ball } from "./ball"
 import { Paddle } from "./paddles"
-import { Game } from "../game"
 
 const canvas = document.getElementById('canvas')
 const ctx = canvas.getContext('2d')
@@ -9,13 +8,23 @@ const paddle1 = new Paddle(50, canvas.height / 2 - 150, canvas)
 const paddle2 = new Paddle(canvas.width - 100, canvas.height / 2 - 150, canvas)
 let p1m = 0
 let p2m = 0
-const game = new Game()
+let points1 = 0
+let points2 = 0
+const text1 = document.getElementById('1')
+const text2 = document.getElementById('2')
 
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
 
   ball.draw(ctx)
-  ball.collisions(canvas)
+  switch (ball.collisions(canvas)) {
+    case 1:
+      points1++
+    break
+    case 2:
+      points2++
+    break
+  }
 
   paddle1.draw(ctx)
   paddle1.move(p1m)
@@ -36,7 +45,8 @@ function draw() {
     }
   }
 
-  console.log(game.points1, game.points2)
+  text1.textContent = `Player 1: ${points1}`
+  text2.textContent = `Player 2: ${points2}`
 
   requestAnimationFrame(draw)
 }

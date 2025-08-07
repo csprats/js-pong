@@ -20,3 +20,7 @@ body {
   display: flex;
   justify-content: space-between;
 }
+h1 {
+  margin: auto;
+  border: solid black 1px;
+}
